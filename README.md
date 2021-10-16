@@ -32,10 +32,11 @@ There are few to-dos for this sample:
 2. Create a PowerShell version of the `open-codespace-dev-container.sh` script for Windows.
 3. Cache VS Code Server between development containers to avoid having to download it multiple times.
 4. Look for ways to further reduce steps.
+5. Update the Remote - Containers documentation to describe the pattern this way.
 
 ## Adapting the sample for your own use
 
-This sample applies the same [patterns](https://code.visualstudio.com/remote/advancedcontainers/connect-multiple-containers) use for Remote - Containers for this same scenario. To adapt for your own use:
+This sample applies the same [patterns](https://code.visualstudio.com/remote/advancedcontainers/connect-multiple-containers) used in Remote - Containers for this same scenario. To adapt for your own use:
 
 1. Modify the extensions and contents of each dev container by updating the `Dockerfile` and `devcontainer.json` file in `container-1-src` and `container-2-src` as needed. You can also rename the folders.
 2. If you need to add another folder, copy the contents of `container-1-src` to create a new folder. Then update `docker-compose.yml` and add a new section for your container. For example, if you created a `container-3-src` folder, you could add a new section like this:
