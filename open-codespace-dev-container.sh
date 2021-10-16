@@ -34,4 +34,4 @@ docker cp -L "${workspace_container}:${BOOTSTRAP_ROOT_FOLDER}/${DEVCONTAINER_BAS
 
 echo
 echo "Launching VS Code..."
-code --force-user-env --disable-workspace-trust "${target_base_folder}"
+code --force-user-env --disable-workspace-trust --skip-add-to-recently-opened "${target_base_folder}"
