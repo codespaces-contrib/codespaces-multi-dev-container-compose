@@ -28,7 +28,5 @@
       "ms-python.vscode-pylance"
     ],
 
-    "postCreateCommand": "touch /tmp/test",
-
     "remoteUser": "vscode"
   }
