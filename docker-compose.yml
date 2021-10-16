@@ -1,0 +1,34 @@
+version: '3'
+services:
+
+  # Boostrap container for entire workspace
+  workspace:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    labels: 
+      com.github.codespaces.active.workspace: "true"
+    volumes:
+      # Mount the docker socket so we can use it
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      # Mount the root folder that contains .git
+      - .:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+  # Development container 1
+  container-1:
+    build:
+      context: .
+      dockerfile: container-1-src/.devcontainer/Dockerfile
+    volumes:
+      - ./container-1-src:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+  # Development container 2
+  container-2:
+    build:
+      context: .
+      dockerfile: container-2-src/.devcontainer/Dockerfile
+    volumes:
+      - ./container-2-src:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"

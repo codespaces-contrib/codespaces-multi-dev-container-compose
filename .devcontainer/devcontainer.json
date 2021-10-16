@@ -1,0 +1,16 @@
+{
+	"name": "Boostrap Container",
+	"dockerComposeFile": "../docker-compose.yml",
+	"service": "workspace",
+	"workspaceFolder": "/workspace",
+
+	"forwardPorts": [ 9256 ],
+	"portsAttributes": {
+		"9256": {
+			"label": "Docker TCP Port",
+			"onAutoForward": "ignore",
+			"requireLocalPort": true
+		}
+	},
+	"remoteUser": "vscode"
+}
