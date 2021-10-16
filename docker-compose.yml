@@ -4,8 +4,8 @@ services:
   # Boostrap container for entire workspace
   workspace:
     build:
-      context: .
-      dockerfile: .devcontainer/Dockerfile
+      context: .devcontainer
+      dockerfile: Dockerfile
     labels: 
       com.github.codespaces.active.workspace: "true"
     volumes:
@@ -18,8 +18,8 @@ services:
   # Development container 1
   container-1:
     build:
-      context: .
-      dockerfile: container-1-src/.devcontainer/Dockerfile
+      context: container-1-src/.devcontainer
+      dockerfile: Dockerfile
     volumes:
       - ./container-1-src:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
@@ -27,8 +27,8 @@ services:
   # Development container 2
   container-2:
     build:
-      context: .
-      dockerfile: container-2-src/.devcontainer/Dockerfile
+      context: container-2-src/.devcontainer
+      dockerfile: Dockerfile
     volumes:
       - ./container-2-src:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
