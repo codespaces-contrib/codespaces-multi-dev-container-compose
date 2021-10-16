@@ -13,4 +13,4 @@ sudoIf()
     fi
 }
 
-sudoIf socat TCP-LISTEN:${TARGET_PORT},fork,bind=127.0.0.1 UNIX-CONNECT:${SOURCE_SOCKET} 2>&1 > /tmp/socat.log
+sudoIf nohup bash -c "socat TCP-LISTEN:${TARGET_PORT},fork,bind=127.0.0.1 UNIX-CONNECT:${SOURCE_SOCKET} > /tmp/socat.log 2>&1 &" > /dev/null 2>&1

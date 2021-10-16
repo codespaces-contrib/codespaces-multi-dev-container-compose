@@ -12,5 +12,6 @@
 			"requireLocalPort": true
 		}
 	},
+	"postStartCommand": "forward-docker-socket",
 	"remoteUser": "vscode"
 }
