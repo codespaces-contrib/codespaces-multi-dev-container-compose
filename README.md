@@ -22,7 +22,7 @@ Codespaces will ultimately have first class support for this partern, so this is
     ./open-codespace-dev-container.sh container-1-src
     ```
 
-    ... or on Windows:
+    ... or on Windows, use PowerShell/Command Prompt (not WSL) as follows:
     ```powershell
     .\open-codespace-dev-container.cmd container-1-src
     ```
