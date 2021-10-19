@@ -14,11 +14,16 @@ Codespaces will ultimately have first class support for this partern, so this is
 ## Using this sample
 
 1. Create a codespace from this repository from VS Code client locally (<kbd>F1</kbd> or <kbd>ctrl</kbd>+<kbd>shift</kbd>+<kbd>p</kbd>, select **Codesaces: Create New Codespace**, enter this repository)
-2. Copy `open-codespace-dev-container.sh` to your local machine.
-3. Use the script to set up a connection to one of the sub-folders in this repository. For example:
+2. Copy `open-codespace-dev-container.sh` (macOS / Linux) or ``open-codespace-dev-container.ps1` and `open-codespace-dev-container.cmd` (Windows) to your local machine.
+3. Use the script to set up a connection to one of the sub-folders in this repository. For example, on macOS / Linux:
 
     ```bash
     ./open-codespace-dev-container.sh container-1-src
+    ```
+
+    ... or on Windows:
+    ```powershell
+    .\open-codespace-dev-container.cmd container-1-src
     ```
 
 4. In the VS Code window that appears, click **Reopen in Container** when a notification appears.
@@ -29,7 +34,7 @@ In a bit, this new window will be using the development container for this folde
 
 There are few to-dos for this sample:
 1. Use a script to print terminal output in the "Boostrap" container to keep all the containers running - once the gh cli supports connecting via SSH, this could be used as well.
-2. Create a PowerShell version of the `open-codespace-dev-container.sh` script for Windows.
+2. Reduce output in ps1 version, better error handling in both
 3. Cache VS Code Server between development containers to avoid having to download it multiple times.
 4. Look for ways to further reduce steps.
 5. Update the Remote - Containers documentation to describe the pattern this way.
