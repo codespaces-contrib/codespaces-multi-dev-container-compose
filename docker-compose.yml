@@ -2,7 +2,7 @@ version: '3'
 services:
 
   # Boostrap container for entire workspace
-  workspace:
+  bootstrap:
     build:
       context: .devcontainer
       dockerfile: Dockerfile
