@@ -1,8 +1,7 @@
 {
 	"name": "Boostrap Container",
 	"dockerComposeFile": "../docker-compose.yml",
-	"service": "boostrap",
-	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
+	"service": "bootstrap",
 	"forwardPorts": [ 9256 ],
 	"portsAttributes": {
 		"9256": {
