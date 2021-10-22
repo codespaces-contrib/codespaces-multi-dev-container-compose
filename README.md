@@ -26,7 +26,7 @@ Codespaces will ultimately have first class support for this partern, so this is
 
 3. On Windows, be sure the **Remote - Containers: Execute in WSL** user setting is **Unchecked** (`"remote.containers.executeInWSL": false` in `settings.json`).
 
-4. Next, copy `open-codespace-dev-container.sh` (macOS / Linux) or ``open-codespace-dev-container.ps1` and `open-codespace-dev-container.cmd` (Windows) to your local machine.
+4. Next, copy `open-codespace-dev-container.sh` (macOS / Linux) or `open-codespace-dev-container.ps1` and `open-codespace-dev-container.cmd` (Windows) to your local machine.
 
 5. In a **local** terminal, use the script to set up a connection to one of the sub-folders in this repository. For example, on macOS / Linux:
 
