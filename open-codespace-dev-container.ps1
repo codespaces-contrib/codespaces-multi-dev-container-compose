@@ -58,22 +58,37 @@ ForEach ($contentPath in $commonConfigList) {
         Write-Host "   (Skipping $contentPath. Not found.)"
     }
 }
+Write-Host
 
 $tempDevContainerJsonFile = "$tempDevContainerFolder/.devcontainer/devcontainer.json"
 $devContainerJsonRaw = [IO.File]::ReadAllText($tempDevContainerJsonFile)
+# Remove comments given devcontainer.json is a jsonc file
 $devContainerJsonRaw = $devContainerJsonRaw -replace "//.*"," "
-$devContainerJson = ConvertFrom-Json -Input-Object $devContainerJsonRaw
-if (!$devContainerJson.dockerComposeFile) {
-    $workspacMountSource=(docker inspect -f '{{range .HostConfig.Mounts}}{{if eq .Target "/workspaces"}}{{.Source}}{{end}}{{end}}' ${bootstrapContainer}) -join ''
-    if ($workspacMountSource -eq "") {
-        $workspacMountSource = "/var/lib/docker/codespacemount/workspace"
+$devContainerJson = ConvertFrom-Json -InputObject $devContainerJsonRaw
+# Append workspace mount property if not a docker compose definition
+if ($null -eq $devContainerJson.dockerComposeFile) {
+    # Find the workspace mount point on the host
+    $workspaceMountSource = (docker inspect -f '{{range .HostConfig.Mounts}}{{if eq .Target \"/workspaces\"}}{{.Source}}{{end}}{{end}}' ${bootstrapContainer}) -join ''
+    if ($workspaceMountSource -eq "") {
+        $workspaceMountSource = "/var/lib/docker/codespacemount/workspace"
     }
     Write-Host "Workspace mount source: ${workspaceMountSource}"
-    $devContainerJson.workspaceFolder = "${workspaceFolderInContainer}/${devcontainerRelativePath}"
-    $devContainerJson.workspaceMount = "source=${workspaceMountSource},destination=/workspaces,type=bind"
-    [IO.File]::WriteAllText("${tempDevContainerJsonFile}", ConvertTo-Json -Input-Object $devContainerJson)
+    # Update devcontainer.json
+    Add-Member -InputObject $devContainerJson -Force -MemberType NoteProperty -Name "workspaceFolder" -Value "${workspaceFolderInContainer}/${devcontainerRelativePath}"
+    Add-Member -InputObject $devContainerJson -Force -MemberType NoteProperty -Name "workspaceMount" -Value "source=${workspaceMountSource},destination=/workspaces,type=bind"
+    [IO.File]::WriteAllText("${tempDevContainerJsonFile}", (ConvertTo-Json -InputObject $devContainerJson))
 }
 
+# Remotely build dev container for better perf if boostrap is not part of a compose
+# definition (since in this case, the containers would already be built)
+if ($composeProjectName -eq "") {
+    Write-Host "Building dev container..."
+    docker exec -i ${bootstrapContainer} /bin/sh -c "\
+        cd ${workspaceFolderInContainer}/${devcontainerRelativePath}; \
+        devcontainer build ."
+}
+
+# Launch VS Code
 Write-Host
 Write-Host "Launching VS Code..."
 code --force-user-env --disable-workspace-trust --skip-add-to-recently-opened "${tempDevContainerFolder}"
