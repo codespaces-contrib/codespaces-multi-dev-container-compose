@@ -2,6 +2,8 @@
 
 Visual Studio Code Remote - Containers supports [a pattern](https://code.visualstudio.com/remote/advancedcontainers/connect-multiple-containers) that allows the use of multiple development containers at the same time for a source tree. Unfortunately [GitHub Codespaces](https://github.com/features/codespaces) does not currently support attaching a second window to a different container in the same Codespaces. However, the fact that the same technology is used in both Remote - Containers and Codespaces allows you to use the Remote - Containers extension with a codespace to achieve the same goal with some subtle tweaks.
 
+This variation of the pattern mirrors the Remote - Containers one and spins everything up at once using a single Docker Compose file. If you would prefer spin up completely separate dev containers in the same codespace, [see this variation instead](https://github.com/chuxel/codespaces-multi-dev-container).
+
 Codespaces will ultimately have first class support for this partern, so this is a workaround given current limitations.
 
 ## Setup
@@ -11,8 +13,8 @@ Codespaces will ultimately have first class support for this partern, so this is
 3. Install the [VS Code Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension in local VS Code
 4. Install the Docker CLI locally (e.g. by installing Docker Desktop - though Docker itself does not need to be running)
 5. On macOS or Linux, install `jq` locally:
-  - macOS: `brew install jq`
-  - Linux: Use your distro's package manger to install. For example, `sudo apt-get install jq`
+    - macOS: `brew install jq`
+    - Linux: Use your distro's package manger to install. For example, `sudo apt-get install jq`
 
 ## Using this sample
 
