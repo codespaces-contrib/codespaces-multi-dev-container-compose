@@ -1,9 +1,7 @@
 {
 	"name": "Boostrap Container",
 	"dockerComposeFile": "../docker-compose.yml",
-	"service": "workspace",
-	"workspaceFolder": "/workspace",
-
+	"service": "bootstrap",
 	"forwardPorts": [ 9256 ],
 	"portsAttributes": {
 		"9256": {
@@ -12,6 +10,6 @@
 			"requireLocalPort": true
 		}
 	},
-	"postStartCommand": "bash .devcontainer/forward-docker-socket",
-	"remoteUser": "vscode"
+	"postStartCommand": "bash .devcontainer/store-source-location.sh",
+	"remoteUser": "node"
 }
