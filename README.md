@@ -1,4 +1,4 @@
-# GitHub Codespaces Multi-Development Container
+# GitHub Codespaces Multi-Development Container (Compose variation)
 
 Visual Studio Code Remote - Containers supports [a pattern](https://code.visualstudio.com/remote/advancedcontainers/connect-multiple-containers) that allows the use of multiple development containers at the same time for a source tree. Unfortunately [GitHub Codespaces](https://github.com/features/codespaces) does not currently support attaching a second window to a different container in the same Codespaces. However, the fact that the same technology is used in both Remote - Containers and Codespaces allows you to use the Remote - Containers extension with a codespace to achieve the same goal with some subtle tweaks.
 
@@ -67,6 +67,5 @@ This sample applies the same [patterns](https://code.visualstudio.com/remote/adv
 ## TODOs
 
 There are few to-dos for this sample:
-1. Reduce output in ps1 version, better error handling in both
-2. Cache VS Code Server between development containers to avoid having to download it multiple times.
-3. Look for ways to further reduce steps.
+1. Cache VS Code Server between development containers to avoid having to download it multiple times.
+2. Look for ways to further reduce steps.
